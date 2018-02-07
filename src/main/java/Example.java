@@ -2,7 +2,8 @@ import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Timer;
+import java.util.TimerTask;
 @RestController
 @EnableAutoConfiguration
 public class Example {
@@ -14,6 +15,13 @@ public class Example {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Example.class, args);
+		// And From your main() method or any other method
+		Timer timer = new Timer();
+		timer.schedule(new SayHello(), 0, 5000);
     }
-
+}
+class SayHello extends TimerTask {
+    public void run() {
+       System.out.println("Test message @ " + System.currentTimeMillis()); 
+    }
 }
